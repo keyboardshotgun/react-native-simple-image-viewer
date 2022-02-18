@@ -1,4 +1,4 @@
-한국어 | [English](./README.eng.md)
+[한국어](./README.md) | English
 
 # react-native-simple-image-viewer
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
