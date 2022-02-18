@@ -114,13 +114,6 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 
 ```
 
-isVisible: boolean;
-imageUri: ImageElementType;
-images?: ImageElementType[] | [];
-imageTitle?: string | undefined | null;
-bgColor?: string | undefined | null;
-onClose?: (state: boolean) => void;
-
 ## Properties
 | Name        | Parameter Type                              | Required |                 Default                  |        Description         |
 |:------------|:--------------------------------------------|:--------:|:----------------------------------------:|:--------------------------:|
