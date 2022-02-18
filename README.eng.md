@@ -17,7 +17,7 @@
 
 ### with Dependencies
 ```sh
- npm install or yarn install react-native-modal react-native-reanimated react-native-gesture-handler
+ npm install or yarn add react-native-modal react-native-reanimated react-native-gesture-handler
 ````
 
 ### Android

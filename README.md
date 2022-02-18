@@ -2,7 +2,7 @@
 
 # react-native-simple-image-viewer
 
-- react-native-reanimated, react-native-gesture-handler, react-native-modal를 사용하여 만든 이미지 모달 컴포넌트 입니다. 
+- react-native-reanimated, react-native-gesture-handler, react-native-modal를 사용하여 만든 이미지 모달 컴포넌트 입니다.
 - pan, pinch, rotate 제스쳐를 지원하여 이미지를 확대, 축소, 회전하여 볼 수 있습니다. 더블 탭으로 원래의 형태로 복귀 합니다.
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
@@ -17,7 +17,7 @@
 
 ### with Dependencies
 ```sh
- npm install or yarn install react-native-modal react-native-reanimated react-native-gesture-handler
+ npm install or yarn add react-native-modal react-native-reanimated react-native-gesture-handler
 ````
 
 ### Android
