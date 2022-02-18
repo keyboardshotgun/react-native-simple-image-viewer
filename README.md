@@ -8,8 +8,9 @@
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
 
 
-```warning
-```
+![preview](https://user-images.githubusercontent.com/25360777/154618048-94856a9b-37cc-4e1e-bcc7-0570bad19df7.gif)
+
+
 ## Before Installation
 
 현재 프로젝트를 사용하기 위해, 다음의 디펜던시들의 설치 및 설정이 먼저 필요 합니다.
