@@ -49,6 +49,20 @@ const MyImageView = (isVisible : boolean) => {
 }
 ```
 
+## Properties
+| Name   | Description | Default |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+
+## Dependence
+
+Depend on 
+- react-native-modal ^13.X : https://github.com/react-native-modal/react-native-modal
+- react-native-reanimated ^2.X : https://github.com/software-mansion/react-native-reanimated
+- react-native-gesture-handler ^2.X : https://github.com/software-mansion/react-native-gesture-handler
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
