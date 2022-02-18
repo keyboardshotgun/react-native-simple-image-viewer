@@ -1,7 +1,8 @@
 # react-native-simple-image-viewer
 
 ```warning
-iOS example not working now, create project base outdated.
+The iOS examples do not work because old version.
+It will be fixed soon.
 ```
 ## Before you install
 
