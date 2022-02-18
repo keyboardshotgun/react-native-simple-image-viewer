@@ -7,7 +7,7 @@
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 ![react-native](https://img.shields.io/badge/react--native-v0.67-blue)
-![react-native-reanimted](https://img.shields.io/badge/react--native--reanimated--v2-v2.4.1-blue)
+![react-native-reanimated](https://img.shields.io/badge/react--native--reanimated--v2-v2.4.1-blue)
 ![react-native-gesture-handler](https://img.shields.io/badge/react--native--gesture--handle-v2.1-blue)
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
 
@@ -114,12 +114,22 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 
 ```
 
-## Properties
-| Name   | Description |    Default     |
-| :---        |:------------|:--------------:|
-| Header      | Title       |  Here's this   |
-| Paragraph   | Text        |    And more    |
+isVisible: boolean;
+imageUri: ImageElementType;
+images?: ImageElementType[] | [];
+imageTitle?: string | undefined | null;
+bgColor?: string | undefined | null;
+onClose?: (state: boolean) => void;
 
+## Properties
+| Name        | Parameter Type                              | Required |          Default          |        Description         |
+|:------------|:--------------------------------------------|:--------:|:-------------------------:|:--------------------------:|
+| isVisible   | Boolean                                     |    O     |           false           |                            |
+| imageUri    | Object : { uri : string , title? : string } |    O     | jsonPlaceHolder image url |                            |
+| images?     | Array                                       |    X     |            [ ]            |                            |
+| imageTitle? | String                                      |    X     |            ''             |                            |
+| bgColor?    | String                                      |    X     |          #333333          |                            |
+| onClose?    | Function : (state:boolean) => void          |    X     |           false           | return false when turn off |
 
 ## Contributing
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
