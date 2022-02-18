@@ -1,16 +1,16 @@
 # react-native-simple-image-viewer
 
+iOS example not working now, create project base outdated.
+
 ---
-Thank you for visit react-native-simple-image-viewer github.
+Welcome to react-native-simple-image-viewer github.
 
-This simple code repositories , Simple Image View Modal Component for React Native
-using These fantastic modules.
-
-I want to test react-native-gesture-handler's new GestureDetector
+Simple Image View Modal Component for React Native using These fantastic modules.
 
 - react-native-modal ^13.X
 - react-native-reanimated ^2.X
 - react-native-gesture-handler ^2.X
+
 ---
 
 ### Features
