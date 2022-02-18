@@ -8,10 +8,9 @@
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
 
 
-```warning
-The iOS examples do not work because old version.
-It will be fixed soon.
-```
+![preview](https://user-images.githubusercontent.com/25360777/154618048-94856a9b-37cc-4e1e-bcc7-0570bad19df7.gif)
+
+
 ## Before Installation
 
 This project depend on these fantastic projects
