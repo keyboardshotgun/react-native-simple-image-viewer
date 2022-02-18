@@ -9,6 +9,9 @@
 
 ![preview](https://user-images.githubusercontent.com/25360777/154618048-94856a9b-37cc-4e1e-bcc7-0570bad19df7.gif)
 
+- react-native-reanimated, react-native-gesture-handler, react-native-modal를 사용하여 만든 이미지 모달 컴포넌트 입니다. 
+- pan, pinch, rotate 제스쳐를 지원하여 이미지를 확대, 축소, 회전하여 볼 수 있습니다. 더블 탭으로 원래의 형태로 복귀 합니다.
+
 ## Installation
 
 ### with Dependencies
@@ -91,9 +94,6 @@ module.exports = {
 
 
 ## Usage
-- Support Pan/Pinch/Rotate gesture
-- D.Taps to rollback
-
 ```js
 import { SimpleImageViewer } from "react-native-simple-image-viewer";
   //...
