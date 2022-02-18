@@ -111,19 +111,17 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
         />
     </View>
   );
-
 ```
 
-## Properties| Name        | Parameter Type                              | Required |          Default          |        Description         |
-|:------------|:--------------------------------------------|:--------:|:-------------------------:|:--------------------------:|
-| isVisible   | Boolean                                     |    O     |           false           |                            |
-| imageUri    | Object : { uri : string , title? : string } |    O     | jsonPlaceHolder image url |                            |
-| images?     | Array                                       |    X     |            [ ]            |                            |
-| imageTitle? | String                                      |    X     |            ''             |                            |
-| bgColor?    | String                                      |    X     |          #333333          |                            |
-| onClose?    | Function : (state:boolean) => void          |    X     |           false           | return false when turn off |
-
-
+## Properties
+| Name        | Parameter Type                              | Required |                 Default                  |        Description         |
+|:------------|:--------------------------------------------|:--------:|:----------------------------------------:|:--------------------------:|
+| isVisible   | Boolean                                     |    O     |                  false                   |                            |
+| imageUri    | Object : { uri : string , title? : string } |    O     | https://via.placeholder.com/2048/18A6F6  | jsonPlaceHolder image url  |
+| images?     | Array                                       |    X     |                   [ ]                    |                            |
+| imageTitle? | String                                      |    X     |                    ''                    |                            |
+| bgColor?    | String                                      |    X     |                 #333333                  |                            |
+| onClose?    | Function : (state:boolean) => void          |    X     |                  false                   | return false when turn off |
 
 ## Contributing
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
