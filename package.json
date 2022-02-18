@@ -35,6 +35,7 @@
     "react-native",
     "ios",
     "android",
+    "image-viewer",
     "image-view",
     "image-modal"
   ],
@@ -44,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/keyboardshotgun/react-native-simple-image-viewer/issues"
   },
-  "homepage": "https://github.com/keyboardshotgun/react-native-simple-image-viewer#readme",
+  "homepage": "https://github.com/keyboardshotgun/react-native-simple-image-viewer#readme.eng",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

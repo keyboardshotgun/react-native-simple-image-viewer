@@ -12,7 +12,7 @@
 ```
 ## Before Installation
 
-This project depend on these fantastic projects
+현재 프로젝트를 사용하기 위해, 다음의 디펜던시들의 설치 및 설정이 먼저 필요 합니다.
 
 ```js
   react-native-reanimated
@@ -56,7 +56,7 @@ const MyImageView = (isVisible : boolean) => {
 
 ## Dependence
 
-Depend on 
+Depend on
 - react-native-modal ^13.X : https://github.com/react-native-modal/react-native-modal
 - react-native-reanimated ^2.X : https://github.com/software-mansion/react-native-reanimated
 - react-native-gesture-handler ^2.X : https://github.com/software-mansion/react-native-gesture-handler

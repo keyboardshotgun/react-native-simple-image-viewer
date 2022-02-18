@@ -10,6 +10,7 @@ const SimpleImageViewer = ({
   imageTitle = '',
   images = [],
   bgColor,
+  onClose,
 }: SimpleImageViewerProps) => {
   const defaultImage = { uri: 'https://via.placeholder.com/2048/18A6F6' };
   const [thisVisible, setThisVisible] = useState<boolean>(false);
@@ -18,8 +19,11 @@ const SimpleImageViewer = ({
     setThisVisible(isVisible);
   }, [isVisible]);
 
-  const onClose = () => {
+  const closeModal = () => {
     setThisVisible(false);
+    if (onClose) {
+      onClose(false);
+    }
   };
 
   return (
@@ -45,7 +49,7 @@ const SimpleImageViewer = ({
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        onPress={onClose}
+        onPress={closeModal}
       >
         <Text style={{ color: '#FFFFFF', fontSize: 25 }}>{`X`}</Text>
       </TouchableOpacity>

@@ -14,6 +14,7 @@ export type SimpleImageViewerProps = {
   images?: ImageElementType[] | [];
   imageTitle?: string | undefined | null;
   bgColor?: string | undefined | null;
+  onClose?: (state: boolean) => void;
 };
 
 export type ViewGestureHandlerRootHOCProps = {
