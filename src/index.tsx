@@ -1,3 +1,4 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+import type SimpleImageView from './Components/SimpleImageView';
+import SimpleImageViewer from './Components/SimpleImageViewer';
+
+export { SimpleImageViewer, SimpleImageView };

@@ -1,18 +1,14 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-simple-image-viewer';
+import { StyleSheet, View } from 'react-native';
+import { SimpleImageViewer } from 'react-native-simple-image-viewer';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <SimpleImageViewer
+        imageUri={{ uri: 'https://via.placeholder.com/2048/18A6F6' }}
+        isVisible={true}
+      />
     </View>
   );
 }

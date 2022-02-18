@@ -34,15 +34,17 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "image-view",
+    "image-modal"
   ],
-  "repository": "http://www.github.com/keyboardshotgun",
-  "author": "keyboardshotgun <interse21@gmail.com> (https://www.github.com/keyboardshotgun/)",
+  "repository": "https://github.com/keyboardshotgun/react-native-simple-image-viewer.git",
+  "author": "keyboardshotgun",
   "license": "MIT",
   "bugs": {
-    "url": "http://www.github.com/keyboardshotgun/issues"
+    "url": "https://github.com/keyboardshotgun/react-native-simple-image-viewer/issues"
   },
-  "homepage": "http://www.github.com/keyboardshotgun#readme",
+  "homepage": "https://github.com/keyboardshotgun/react-native-simple-image-viewer#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -61,11 +63,14 @@
     "jest": "^26.0.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react": "17.0.2",
+    "react-native": "0.67.2",
     "react-native-builder-bob": "^0.18.0",
     "release-it": "^14.2.2",
-    "typescript": "^4.1.3"
+    "typescript": "^4.5.5",
+    "react-native-reanimated": "^2.4.1",
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-modal" : "^13.0.0"
   },
   "peerDependencies": {
     "react": "*",
