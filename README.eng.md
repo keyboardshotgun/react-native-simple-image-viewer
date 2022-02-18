@@ -1,6 +1,10 @@
 [한국어](./README.md) | English
 
 # react-native-simple-image-viewer
+
+- Simple Image modal Component, Using react-native-reanimated, react-native-gesture-handler, react-native-modal
+- Support Pan/Pinch/Rotate gesture ann D.Taps to rollback
+
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 ![react-native](https://img.shields.io/badge/react--native-v0.67-blue)
 ![react-native-reanimted](https://img.shields.io/badge/react--native--reanimated--v2-v2.4.1-blue)
@@ -91,9 +95,6 @@ module.exports = {
 
 
 ## Usage
-- Support Pan/Pinch/Rotate gesture
-- D.Taps to rollback
-
 ```js
 import { SimpleImageViewer } from "react-native-simple-image-viewer";
   //...
