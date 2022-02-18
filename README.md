@@ -1,6 +1,24 @@
 # react-native-simple-image-viewer
 
-image view
+---
+Thank you for visit react-native-simple-image-viewer github.
+
+This simple code repositories , Simple Image View Modal Component for React Native
+using These fantastic modules.
+
+I want to test react-native-gesture-handler's new GestureDetector
+
+- react-native-modal ^13.X
+- react-native-reanimated ^2.X
+- react-native-gesture-handler ^2.X
+---
+
+### Features
+
+- Working like a charm
+- Support Pan or Pinch Image
+- Double Taps to rollback origin image size
+- small previewing navigation for images.
 
 ## Installation
 
@@ -8,14 +26,27 @@ image view
 npm install react-native-simple-image-viewer
 ```
 
+## Before you install
+First, you need to some steps. both Android and iOS
+```js
+  react-native-reanimated
+  react-native-gesture-handler
+  react-native-modal
+```
+
 ## Usage
 
 ```js
-import { multiply } from "react-native-simple-image-viewer";
-
-// ...
-
-const result = await multiply(3, 7);
+import { SimpleImageViewer } from "react-native-simple-image-viewer";
+const MyImageView = (isVisible : boolean) => {
+  //...
+  return (
+    <SimpleImageViewer
+      imageUri={{ uri: 'https://via.placeholder.com/2048/18A6F6' }}
+      isVisible={true}
+    />
+  )
+}
 ```
 
 ## Contributing
