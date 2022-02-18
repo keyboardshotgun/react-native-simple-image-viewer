@@ -22,6 +22,8 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
   const transY = useSharedValue<number>(0);
   const scaleXY = useSharedValue<number>(1);
   const savedScale = useSharedValue<number>(1);
+  const rotation = useSharedValue(0);
+  const savedRotation = useSharedValue(0);
 
   const transXYStyle = useAnimatedStyle(() => {
     return {
@@ -29,6 +31,7 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
         { translateX: transX.value },
         { translateY: transY.value },
         { scale: scaleXY.value },
+        { rotateZ: `${(rotation.value / Math.PI) * 180}deg` },
       ],
     };
   }, []);
@@ -44,6 +47,8 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
     scaleXY.value = withSpring(1);
     transX.value = withSpring(0);
     transY.value = withSpring(0);
+    rotation.value = withSpring(0);
+    savedRotation.value = 0;
   };
 
   const panHandler: ComposedGesture | GestureType | undefined = Gesture.Pan()
@@ -74,10 +79,20 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
     .maxDelay(300)
     .onEnd(scaleAnimation);
 
+  const rotateHandler: ComposedGesture | GestureType | undefined =
+    Gesture.Rotation()
+      .onUpdate((e) => {
+        rotation.value = savedRotation.value + e.rotation;
+      })
+      .onEnd(() => {
+        savedRotation.value = rotation.value;
+      });
+
   const simultaneousHandler = Gesture.Simultaneous(
     panHandler,
     pinchHandler,
-    tapHandler
+    tapHandler,
+    rotateHandler
   );
 
   return imageUri?.uri ? (
