@@ -16,9 +16,15 @@
 ## Installation
 
 ### with Dependencies
+
+- npm
 ```sh
- npm install or yarn add react-native-modal react-native-reanimated react-native-gesture-handler
+ npm install react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
 ````
+-yarn
+```sh
+yarn add react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
+```
 
 ### Android
 | [Setting for react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
@@ -29,7 +35,7 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
     ...
-    ['react-native-reanimated/plugin'] //<- add to end of array
+    ['react-native-reanimated/plugin'] //<- add, end of array
   ],
 }
 ```
@@ -37,7 +43,7 @@ module.exports = {
 2. your-project-name/android/app/build.gradle
 ```gradle
    project.ext.react = [
-      enableHermes: true  // <- here | clean and rebuild if changing
+      enableHermes: true  // <- false to true
   ]
 ```
 
@@ -66,8 +72,8 @@ module.exports = {
 
 4. Rebuild
 ```sh
-  c:\your-project-name\android\gradlew clean
-  c:\your-project-name\npx react-native run-android
+  X:\your-project-name\android\gradlew clean
+  X:\your-project-name\npx react-native run-android
 ```
 
 ### iOS
@@ -78,7 +84,7 @@ module.exports = {
   use_react_native!(
     :path => config[:reactNativePath],
     # to enable hermes on iOS, change `false` to `true` and then install pods
-    :hermes_enabled => true #<- false to true
+    :hermes_enabled => true # <- false to true
   )
 
   # this is option
@@ -92,7 +98,6 @@ module.exports = {
   c:\your-project-name\ios\pod install
   c:\your-project-name\npm react-native run-ios
 ```
-
 
 ## Usage
 ```js
