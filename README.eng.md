@@ -16,9 +16,15 @@
 ## Installation
 
 ### with Dependencies
+
+- npm
 ```sh
- npm install or yarn add react-native-modal react-native-reanimated react-native-gesture-handler
+ npm install react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
 ````
+-yarn
+```sh
+yarn add react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
+```
 
 ### Android
 | [Setting for react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
