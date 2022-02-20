@@ -3,7 +3,7 @@
 # react-native-simple-image-viewer
 
 - Simple Image modal Component, Using react-native-reanimated, react-native-gesture-handler, react-native-modal
-- Support Pan/Pinch/Rotate gesture ann D.Taps to rollback
+- Support Pan/Pinch/Rotate gesture. double Tap to default size
 
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 ![react-native](https://img.shields.io/badge/react--native-v0.67-blue)
