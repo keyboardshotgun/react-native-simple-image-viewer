@@ -21,7 +21,7 @@
 ```sh
  npm install react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
 ````
--yarn
+- yarn
 ```sh
 yarn add react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
 ```
