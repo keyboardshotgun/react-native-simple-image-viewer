@@ -11,10 +11,16 @@
 ![react-native-gesture-handler](https://img.shields.io/badge/react--native--gesture--handle-v2.1-blue)
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
 
+single image
+
 ![preview_single_1](https://user-images.githubusercontent.com/25360777/154618048-94856a9b-37cc-4e1e-bcc7-0570bad19df7.gif)
+
+---
+multiple images
+
+![preview_multi_3](https://user-images.githubusercontent.com/25360777/155094957-c0cd7866-376e-43b7-88ee-411cfd3f48af.gif)
 ![preview_multi_1](https://user-images.githubusercontent.com/25360777/155094485-0ea65b0a-63b1-4399-a8a4-0decd6969ddb.gif)
 ![preview_multi_2](https://user-images.githubusercontent.com/25360777/155094684-b39ad79e-61de-4e99-8afb-a5e828b06bea.gif)
-![preview_multi_3](https://user-images.githubusercontent.com/25360777/155094957-c0cd7866-376e-43b7-88ee-411cfd3f48af.gif)
 
 ## Installation
 
@@ -146,8 +152,8 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 + Example update.
 
 ---
-## known issue
-+ show modal on start is laggy items
+## known issues
++ The Item of list component show slow or laggy when open modal.
 ---
 
 ## Contributing

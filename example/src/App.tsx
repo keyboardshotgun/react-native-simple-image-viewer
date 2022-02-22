@@ -68,7 +68,7 @@ export default function App() {
         images={defaultImages}
         isVisible={showHide}
         onClose={() => setShowHide(false)}
-        bgColor={'#FFFFFF'}
+        bgColor={'#333333'}
       />
     </View>
   );

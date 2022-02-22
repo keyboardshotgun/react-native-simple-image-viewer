@@ -74,13 +74,8 @@ const SimpleImageView = ({
           images?.slice(perPage * index, perPage * index + perPage)
         );
       });
-      console.log('[newArray] :', newArray, '\n length : ', newArray.length);
       setImgArray(newArray);
     }
-  }, [totPage]);
-
-  useEffect(() => {
-    console.log('[totPage] :', totPage);
   }, [totPage]);
 
   useEffect(() => {
