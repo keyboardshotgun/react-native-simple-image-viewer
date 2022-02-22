@@ -12,6 +12,7 @@
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
 
 ![preview](https://user-images.githubusercontent.com/25360777/154618048-94856a9b-37cc-4e1e-bcc7-0570bad19df7.gif)
+![preview_multiple](https://user-images.githubusercontent.com/25360777/155094020-72611fbe-87c3-4929-889f-bf13442f7923.gif)
 
 ## Installation
 
