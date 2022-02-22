@@ -109,6 +109,7 @@ module.exports = {
 ```
 
 ## Usage
+### single image
 ```js
 import { SimpleImageViewer } from "react-native-simple-image-viewer";
   //...
@@ -127,6 +128,17 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
   );
 
 ```
+### multiple images
+```js
+      <SimpleImageViewer
+        perPage={itemsPerPage}
+        imageUri={defaultImage}
+        images={defaultImages}
+        isVisible={showHide}
+        onClose={() => setShowHide(false)}
+        bgColor={'#333333'}
+      />
+```
 
 ## Properties
 | Name           | Parameter Type                              | Required |                 Default                 |                Description                |
@@ -142,7 +154,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | naviPosition   | 'top', 'bottom'                             |    X     |                                         |                                           |
 | leftHanded     | boolean                                     |    X     |                  false                  |                                           |
 | selectedIndex  | number                                      |    X     |                    0                    | Selected array of imageUri object's index |
-| showTitle      | boolean                                     |    X     |                  false                  |    Show selected imageUri object title    |
+| showTitle      | boolean                                     |    X     |                  false                  |    Show selected imageUri object's title  |
 
 ## Update
 ### 0.2.0
