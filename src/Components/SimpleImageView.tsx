@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ComposedGesture,
   Gesture,
@@ -11,11 +11,42 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-
 import ViewGestureHandlerRootHOC from './ViewGestureHandlerRootHOC';
+import type { ImageElementType, SimpleImageViewProps } from './types';
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Text,
+  View,
+} from 'react-native';
+import ThumbnailComponent from './ThumbnailComponent';
+import { styles } from './styles';
+import { getComplementaryColor } from './Utils';
 
-import type { SimpleImageViewProps } from './types';
-const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
+const SimpleImageView = ({
+  imageUri,
+  bgColor,
+  images = [],
+  viewMode = 'single',
+  selectedIndex = 0,
+  perPage = 3,
+  itemMargin = 15,
+  showTitle,
+  complementaryBgColor,
+}: SimpleImageViewProps) => {
+  const DeviceWidth = Dimensions.get('window').width;
+  const imageSize =
+    (perPage < 4
+      ? Math.round(DeviceWidth / 4)
+      : Math.round(DeviceWidth / perPage)) - itemMargin;
+  const imageBorderRadius = imageSize * 0.05;
+  const tmpImgObj = { uri: '', title: '' };
+  const [nowImage, setNowImage] = useState<ImageElementType>(tmpImgObj);
+  const [totPage, setToTPage] = useState<number | undefined>(undefined);
+  const [imgIndex, setImgIndex] = useState<number>(0);
+  const [imgArray, setImgArray] = useState<ImageElementType[][]>([]);
+
   const startX = useSharedValue<number>(0);
   const transX = useSharedValue<number>(0);
   const startY = useSharedValue<number>(0);
@@ -24,6 +55,39 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
   const savedScale = useSharedValue<number>(1);
   const rotation = useSharedValue(0);
   const savedRotation = useSharedValue(0);
+
+  useEffect(() => {
+    if (viewMode === 'multi' && images && images?.length > 0) {
+      setToTPage(Math.ceil(images?.length / perPage));
+      setNowImage(images[selectedIndex] ?? imageUri);
+    } else {
+      setToTPage(1);
+      setNowImage(imageUri);
+    }
+  }, [images, imageUri]);
+
+  useEffect(() => {
+    if (totPage && totPage > 0 && images?.length > 0) {
+      const newArray: ImageElementType[][] = [];
+      Array.from({ length: totPage }).forEach((_, index) => {
+        newArray.push(
+          images?.slice(perPage * index, perPage * index + perPage)
+        );
+      });
+      console.log('[newArray] :', newArray, '\n length : ', newArray.length);
+      setImgArray(newArray);
+    }
+  }, [totPage]);
+
+  useEffect(() => {
+    console.log('[totPage] :', totPage);
+  }, [totPage]);
+
+  useEffect(() => {
+    if (!imgArray) return;
+    setNowImage(tmpImgObj);
+    setNowImage(images![imgIndex]);
+  }, [imgIndex]);
 
   const transXYStyle = useAnimatedStyle(() => {
     return {
@@ -95,14 +159,123 @@ const SimpleImageView = ({ imageUri, bgColor }: SimpleImageViewProps) => {
     rotateHandler
   );
 
-  return imageUri?.uri ? (
-    <GestureDetector gesture={simultaneousHandler}>
-      <ViewGestureHandlerRootHOC
-        imageUri={imageUri}
-        transXYStyle={transXYStyle}
-        bgColor={bgColor as string}
-      />
-    </GestureDetector>
+  const updateNowImageIndex = (pageIndex: number, imageIndex: number) => {
+    setImgIndex(pageIndex * perPage + imageIndex);
+  };
+
+  const keyExtractor = (_: ImageElementType[], index: number) =>
+    index.toString();
+
+  const _renderItem = ({
+    item,
+    index,
+  }: {
+    item: ImageElementType[];
+    index: number;
+  }) => {
+    return (
+      <View
+        style={[
+          styles.itemContainer,
+          {
+            width: DeviceWidth,
+            backgroundColor: bgColor as string,
+          },
+        ]}
+      >
+        {item?.map((el, imageIndex) => {
+          return (
+            <ThumbnailComponent
+              key={index + ':' + imageIndex}
+              nowPage={index}
+              imgIndex={imageIndex}
+              imgObj={el}
+              imageBorderRadius={imageBorderRadius}
+              imageSize={imageSize}
+              perPage={perPage}
+              borderColor={complementaryBgColor!}
+              updateNowImageIndex={updateNowImageIndex}
+            />
+          );
+        })}
+      </View>
+    );
+  };
+
+  return imageUri?.uri || images?.length > 0 ? (
+    <View style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: bgColor as string,
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+      >
+        {showTitle && nowImage?.title && nowImage?.title?.length > 0 ? (
+          <Text
+            style={{
+              fontSize: 16,
+              color: complementaryBgColor!,
+            }}
+          >{`${nowImage?.title}`}</Text>
+        ) : null}
+      </View>
+
+      {nowImage && nowImage?.uri ? (
+        <View style={{ flex: 4, backgroundColor: bgColor as string }}>
+          <GestureDetector gesture={simultaneousHandler}>
+            <ViewGestureHandlerRootHOC
+              imageUri={nowImage}
+              transXYStyle={transXYStyle}
+              bgColor={bgColor as string}
+            />
+          </GestureDetector>
+        </View>
+      ) : (
+        <View
+          style={{
+            flex: 4,
+            backgroundColor: bgColor as string,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ActivityIndicator
+            size={'small'}
+            color={getComplementaryColor(bgColor!) ?? '#FFFFFF'}
+          />
+        </View>
+      )}
+
+      {viewMode === 'multi' &&
+      totPage &&
+      totPage > 0 &&
+      imgArray &&
+      imgArray?.length > 0 ? (
+        <FlatList
+          ListEmptyComponent={
+            <ActivityIndicator size={'large'} color={complementaryBgColor!} />
+          }
+          style={{ flex: 1 }}
+          windowSize={1}
+          initialNumToRender={
+            totPage ? (totPage >= 2 ? 2 : totPage) : undefined
+          }
+          keyExtractor={keyExtractor}
+          data={imgArray}
+          renderItem={_renderItem}
+          horizontal={true}
+          pagingEnabled={true}
+          removeClippedSubviews={true}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollBegin={undefined}
+          onEndReached={undefined}
+          onEndReachedThreshold={0.5}
+        />
+      ) : null}
+    </View>
   ) : null;
 };
 

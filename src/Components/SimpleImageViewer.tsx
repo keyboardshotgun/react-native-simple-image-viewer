@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import SimpleImageView from './SimpleImageView';
 import type { SimpleImageViewerProps } from './types';
+import CloseButton from './CloseButton';
+import { styles } from './styles';
+import { getComplementaryColor } from './Utils';
 
 const SimpleImageViewer = ({
   isVisible = false,
   imageUri,
-  imageTitle = '',
   images = [],
-  bgColor,
   onClose,
+  bgColor = '#333333',
+  viewMode = 'multi',
+  showTitle = false,
+  selectedIndex = 0,
+  perPage = 3,
+  leftHanded = false,
 }: SimpleImageViewerProps) => {
-  const defaultImage = { uri: 'https://via.placeholder.com/2048/18A6F6' };
+
+  const [complementaryBgColor,] = useState<string>(getComplementaryColor(bgColor!))
   const [thisVisible, setThisVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,38 +28,30 @@ const SimpleImageViewer = ({
 
   const closeModal = () => {
     setThisVisible(false);
-    if (onClose) {
-      onClose(false);
-    }
+    if (onClose) onClose(false);
   };
 
   return (
     <Modal
-      animationIn={'slideInUp'}
-      animationOut={'slideOutDown'}
-      style={{ padding: 0, margin: 0 }}
       isVisible={thisVisible}
-    >
+      animationIn={'fadeIn'}
+      animationOut={'fadeOut'}
+      style={[styles.modal, { backgroundColor : bgColor! }]}>
       <SimpleImageView
-        imageUri={imageUri?.uri ? imageUri : defaultImage}
-        imageTitle={imageTitle}
+        viewMode={viewMode}
+        perPage={perPage}
+        selectedIndex={selectedIndex}
+        imageUri={imageUri}
         images={images}
-        bgColor={bgColor ?? '#333333'}
+        showTitle={showTitle}
+        bgColor={bgColor}
+        complementaryBgColor={complementaryBgColor}
       />
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          top: 80,
-          right: 0,
-          height: 50,
-          width: 50,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={closeModal}
-      >
-        <Text style={{ color: '#FFFFFF', fontSize: 25 }}>{`X`}</Text>
-      </TouchableOpacity>
+      <CloseButton
+        handed={leftHanded}
+        onClose={closeModal}
+        closeButtonColor={complementaryBgColor}
+      />
     </Modal>
   );
 };
