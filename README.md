@@ -159,7 +159,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | selectedIndex  | number                                      |    X     |                    0                    | Selected array of imageUri object's index |
 | showTitle      | boolean                                     |    X     |                  false                  |    Show selected imageUri object's title  |
 
-## Update
+## Changelog
 ### 0.2.1
 + Added react-native-fast-image dependency for list performance.
 + When image not found or error, show Alternative component.
