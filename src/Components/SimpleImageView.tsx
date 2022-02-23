@@ -201,12 +201,11 @@ const SimpleImageView = ({
     <View style={{ flex: 1 }}>
       <View
         style={{
-          flex: 1,
+          flex: 0.65,
           backgroundColor: bgColor as string,
           justifyContent: 'flex-end',
           alignItems: 'center',
-        }}
-      >
+        }}>
         {showTitle && nowImage?.title && nowImage?.title?.length > 0 ? (
           <Text
             style={{
