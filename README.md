@@ -3,7 +3,7 @@
 # react-native-simple-image-viewer
 
 - 간단한 이미지 모달 컴포넌트 입니다.
-- react-native-reanimated, react-native-gesture-handler, react-native-modal, react-native-fast-image를 사용하습니다. 
+- react-native-reanimated, react-native-gesture-handler, react-native-modal, react-native-fast-image를 사용하여 구현 하였습니다. 
 - pan, pinch, rotate 제스쳐를 지원하여 이미지를 확대, 축소, 회전하여 볼 수 있습니다. 
 - 더블 탭으로 기본크기로 복귀 합니다.
 
@@ -162,7 +162,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 ## Update
 ### 0.2.1
 + Added react-native-fast-image dependency for list performance.
-+ Check Image first and if got error then show error component.
++ When image not found or error, show Alternative component.
 
 ### 0.2.0
 + Added horizontal scroll list bar for multi-image support
