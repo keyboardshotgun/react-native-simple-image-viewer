@@ -144,22 +144,29 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 ```
 
 ## Properties
-| Name           | Parameter Type                              | Required |                 Default                 |                Description                |
-|:---------------|:--------------------------------------------|:--------:|:---------------------------------------:|:-----------------------------------------:|
-| isVisible      | Boolean                                     |    O     |                  false                  |             show / hide modal             |
-| imageUri       | Object : { uri : string , title? : string } |    O     | https://via.placeholder.com/2048/18A6F6 |         jsonPlaceHolder image url         |
-| images?        | Array                                       |    X     |                   [ ]                   |             Array of imageUri             |
-| bgColor?       | String                                      |    X     |                 #333333                 |                                           |
-| onClose?       | Function : (state:boolean) => void          |    X     |                  false                  |        return false when turn off         |
-| viewMode       | 'single','multi'                            |    X     |                'single'                 |                                           |
-| perPage        | number                                      |    X     |                    3                    |                                           |
-| itemMargin     | number                                      |    X     |                  auto                   |                                           |
-| naviPosition   | 'top', 'bottom'                             |    X     |                                         |                                           |
-| leftHanded     | boolean                                     |    X     |                  false                  |                                           |
-| selectedIndex  | number                                      |    X     |                    0                    | Selected array of imageUri object's index |
-| showTitle      | boolean                                     |    X     |                  false                  |    Show selected imageUri object's title  |
+| Name            | Parameter Type                              | Required |                 Default                 |                 Description                  |
+|:----------------|:--------------------------------------------|:--------:|:---------------------------------------:|:--------------------------------------------:|
+| isVisible       | Boolean                                     |    O     |                  false                  |              show / hide modal               |
+| imageUri        | Object : { uri : string , title? : string } |    O     | https://via.placeholder.com/2048/18A6F6 |          jsonPlaceHolder image url           |
+| images?         | Array                                       |    X     |                   [ ]                   |              Array of imageUri               |
+| bgColor?        | String                                      |    X     |                 #333333                 |                                              |
+| onClose?        | Function : (state:boolean) => void          |    X     |                  false                  |          return false when turn off          |
+| viewMode        | 'single','multi'                            |    X     |                'single'                 |                                              |
+| perPage         | number                                      |    X     |                    3                    |                                              |
+| naviPosition    | 'top', 'bottom'                             |    X     |                                         |                                              |
+| leftHanded      | boolean                                     |    X     |                  false                  |         close-button position change         |
+| selectedIndex   | number                                      |    X     |                    0                    |  Selected array of imageUri object's index   |
+| showTitle       | boolean                                     |    X     |                  false                  |  Show/Hide Selected imageUri object's title  |
+| itemMargin      | number                                      |    X     |                   15                    |         margin between items of list         |
+| showPage        | boolean                                     |    X     |                  false                  | Show/Hide page current and total page number |
 
 ## Changelog
+### 0.3.1
++ Added current / total page info
++ new property (showPage,itemMargin,leftHanded)
++ fixed almost minor errors
++ Added new option component for example
+
 ### 0.2.3
 + fixed ErrorComponent
 
