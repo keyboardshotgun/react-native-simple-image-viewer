@@ -30,6 +30,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'flex-start',
     justifyContent: 'center',
-    paddingTop: 10,
+    paddingTop: 15,
   },
 });

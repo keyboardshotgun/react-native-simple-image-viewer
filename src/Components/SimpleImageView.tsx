@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   ComposedGesture,
   Gesture,
@@ -16,37 +16,37 @@ import type { ImageElementType, SimpleImageViewProps } from './types';
 import {
   ActivityIndicator,
   Dimensions,
-  FlatList,
+  FlatList, NativeScrollEvent, NativeSyntheticEvent,
   Text,
   View,
 } from 'react-native';
 import ThumbnailComponent from './ThumbnailComponent';
 import { styles } from './styles';
-import { getComplementaryColor } from './Utils';
 
 const SimpleImageView = ({
   imageUri,
   bgColor,
-  images = [],
-  viewMode = 'single',
-  selectedIndex = 0,
-  perPage = 3,
-  itemMargin = 15,
+  images,
+  viewMode,
+  selectedIndex,
+  perPage,
+  itemMargin,
   showTitle,
   complementaryBgColor,
+  showPage,
 }: SimpleImageViewProps) => {
   const DeviceWidth = Dimensions.get('window').width;
   const imageSize =
-    (perPage < 4
+    (perPage! < 4
       ? Math.round(DeviceWidth / 4)
-      : Math.round(DeviceWidth / perPage)) - itemMargin;
+      : Math.round(DeviceWidth / perPage!)) - itemMargin!;
   const imageBorderRadius = imageSize * 0.05;
   const tmpImgObj = { uri: '', title: '' };
   const [nowImage, setNowImage] = useState<ImageElementType>(tmpImgObj);
   const [totPage, setToTPage] = useState<number | undefined>(undefined);
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [imgArray, setImgArray] = useState<ImageElementType[][]>([]);
-
+  const [nowPage , setNowPage] = useState<number>(1);
   const startX = useSharedValue<number>(0);
   const transX = useSharedValue<number>(0);
   const startY = useSharedValue<number>(0);
@@ -58,8 +58,8 @@ const SimpleImageView = ({
 
   useEffect(() => {
     if (viewMode === 'multi' && images && images?.length > 0) {
-      setToTPage(Math.ceil(images?.length / perPage));
-      setNowImage(images[selectedIndex] ?? imageUri);
+      setToTPage(Math.ceil(images?.length / perPage!));
+      setNowImage(images[selectedIndex!] ?? imageUri);
     } else {
       setToTPage(1);
       setNowImage(imageUri);
@@ -67,11 +67,11 @@ const SimpleImageView = ({
   }, [images, imageUri]);
 
   useEffect(() => {
-    if (totPage && totPage > 0 && images?.length > 0) {
+    if (totPage && totPage > 0 && images && images?.length > 0) {
       const newArray: ImageElementType[][] = [];
       Array.from({ length: totPage }).forEach((_, index) => {
         newArray.push(
-          images?.slice(perPage * index, perPage * index + perPage)
+          images?.slice(perPage! * index, perPage! * index + perPage!)
         );
       });
       setImgArray(newArray);
@@ -155,8 +155,12 @@ const SimpleImageView = ({
   );
 
   const updateNowImageIndex = (pageIndex: number, imageIndex: number) => {
-    setImgIndex(pageIndex * perPage + imageIndex);
+    setImgIndex(pageIndex * perPage! + imageIndex);
   };
+
+  const updateNowPage = useCallback((e:  NativeSyntheticEvent<NativeScrollEvent>) => {
+    setNowPage((Math.floor(e?.nativeEvent?.contentOffset?.x / e?.nativeEvent?.layoutMeasurement?.width)??0)+1);
+  },[]);
 
   const keyExtractor = (_: ImageElementType[], index: number) =>
     index.toString();
@@ -187,7 +191,7 @@ const SimpleImageView = ({
               imgObj={el}
               imageBorderRadius={imageBorderRadius}
               imageSize={imageSize}
-              perPage={perPage}
+              perPage={perPage!}
               borderColor={complementaryBgColor!}
               updateNowImageIndex={updateNowImageIndex}
             />
@@ -197,16 +201,11 @@ const SimpleImageView = ({
     );
   };
 
-  return imageUri?.uri || images?.length > 0 ? (
-    <View style={{ flex: 1 }}>
-      <View
-        style={{
-          flex: 0.65,
-          backgroundColor: bgColor as string,
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-        }}>
-        {showTitle && nowImage?.title && nowImage?.title?.length > 0 ? (
+  return images && (imageUri?.uri || images?.length > 0) ? (
+    <View style={{ flex: 1,  backgroundColor: bgColor as string }}>
+
+      <View style={{ flex: 0.65, justifyContent: 'flex-end', alignItems: 'center', }}>
+        { showTitle && nowImage?.title && nowImage?.title?.length > 0 ? (
           <Text
             style={{
               fontSize: 16,
@@ -217,7 +216,7 @@ const SimpleImageView = ({
       </View>
 
       {nowImage && nowImage?.uri ? (
-        <View style={{ flex: 4, backgroundColor: bgColor as string }}>
+        <View style={{ flex: 4 }}>
           <GestureDetector gesture={simultaneousHandler}>
             <ViewGestureHandlerRootHOC
               imageUri={nowImage}
@@ -227,48 +226,47 @@ const SimpleImageView = ({
           </GestureDetector>
         </View>
       ) : (
-        <View
-          style={{
-            flex: 4,
-            backgroundColor: bgColor as string,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator
             size={'small'}
-            color={getComplementaryColor(bgColor!) ?? '#FFFFFF'}
+            color={complementaryBgColor! ?? '#FFFFFF'}
           />
         </View>
       )}
 
-      {viewMode === 'multi' &&
-      totPage &&
-      totPage > 0 &&
-      imgArray &&
-      imgArray?.length > 0 ? (
-        <FlatList
-          ListEmptyComponent={
-            <ActivityIndicator size={'large'} color={complementaryBgColor!} />
-          }
-          style={{ flex: 1 }}
-          windowSize={1}
-          initialNumToRender={
-            totPage ? (totPage >= 2 ? 2 : totPage) : undefined
-          }
-          keyExtractor={keyExtractor}
-          data={imgArray}
-          renderItem={_renderItem}
-          horizontal={true}
-          pagingEnabled={true}
-          removeClippedSubviews={true}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollBegin={undefined}
-          onEndReached={undefined}
-          onEndReachedThreshold={0.5}
-        />
+      {viewMode === 'multi' && (totPage && totPage > 0) && ( imgArray && imgArray?.length > 0) ?
+        (
+          <FlatList
+            ListEmptyComponent={
+              <ActivityIndicator size={'large'} color={complementaryBgColor!} />
+            }
+            style={{ flex: 0.85 }}
+            windowSize={1}
+            initialNumToRender={
+              totPage ? (totPage >= 2 ? 2 : totPage) : undefined
+            }
+            keyExtractor={keyExtractor}
+            data={imgArray}
+            renderItem={_renderItem}
+            horizontal={true}
+            pagingEnabled={true}
+            removeClippedSubviews={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            onMomentumScrollBegin={undefined}
+            onMomentumScrollEnd={updateNowPage}
+            onEndReached={undefined}
+            onEndReachedThreshold={0.5}
+          />
       ) : null}
+
+      { (viewMode === 'multi' && showPage) ?
+        <View style={{flex: 0.5, justifyContent : 'flex-start', alignItems : 'center' }}>
+          <Text style={{color : complementaryBgColor!, fontSize : 15, fontWeight : '500' }}>{`${nowPage} / ${totPage}`}</Text>
+        </View>
+        :
+        null
+      }
     </View>
   ) : null;
 };

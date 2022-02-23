@@ -19,6 +19,7 @@ export default function App() {
     { uri: string; title: string }[]
   >([]);
   const [viewMode, setViewMode] = useState<'single' | 'multi'>('single');
+  const [showPage, setShowPage] = useState<boolean>(false);
 
   useEffect(() => {
     const newArray = arrayMaker(totItems);
@@ -46,6 +47,10 @@ export default function App() {
     setItemPerPage(value);
   };
 
+  const updatePageInfo = (value: number) => {
+    setShowPage(value === 1);
+  }
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -59,7 +64,7 @@ export default function App() {
         </View>
 
         <RandomButton
-          title={'ViewMode'}
+          title={'Image View Mode'}
           min={0}
           max={0}
           onResult={updateViewMode}
@@ -67,6 +72,15 @@ export default function App() {
 
         { viewMode === 'multi' ?
           <>
+
+            <RandomButton
+              title={'Page Number'}
+              min={0}
+              max={0}
+              onOffTitle={true}
+              onResult={updatePageInfo}
+            />
+
             <RandomButton
               title={'Total count of items'}
               min={MIN_NUMBER}
@@ -99,6 +113,7 @@ export default function App() {
           isVisible={showHide}
           onClose={() => setShowHide(false)}
           bgColor={'#333333'}
+          showPage={showPage}
         />
       </View>
     </SafeAreaView>

@@ -56,7 +56,9 @@ const ThumbnailComponent = ({
           <ErrorComponent size={'small'} />
           :
           <FastImage
+            fallback={true}
             source={imgObj}
+            removeClippedSubviews={true}
             onLoad={imageLoadedHandler}
             onError={imageErrorHandler}
             style={{ flex: 1, borderRadius: imageBorderRadius }}

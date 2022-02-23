@@ -18,7 +18,7 @@ const CloseButton = ({
   };
   return (
     <TouchableOpacity style={ handed ? styles.closeBtnLeftHand : styles.closeBtn } onPress={onCloseHandler}>
-      <Text style={{ color: closeButtonColor ?? '#FFFFFF', fontSize: 30 }}>{`✕`}</Text>
+      <Text style={{ color: closeButtonColor ?? '#FFFFFF', fontSize: 35 }}>{`✕`}</Text>
     </TouchableOpacity>
   );
 };

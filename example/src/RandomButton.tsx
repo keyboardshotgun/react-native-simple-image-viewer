@@ -6,6 +6,7 @@ type RandomButtonProps = {
   min: number;
   max: number;
   onResult: (ret: number) => void;
+  onOffTitle? : boolean;
 };
 
 const RandomButton = ({
@@ -13,6 +14,7 @@ const RandomButton = ({
   min = 3,
   max = 10,
   onResult,
+  onOffTitle = false,
 }: RandomButtonProps) => {
   const [randomTitle, setRandomTitle] = useState<number>(min);
 
@@ -33,7 +35,7 @@ const RandomButton = ({
     <View
       style={{
         width: '100%',
-        height: 80,
+        height: 70,
         flexDirection: 'row',
         borderTopWidth : StyleSheet.hairlineWidth,
         borderColor : "#999999",
@@ -48,9 +50,9 @@ const RandomButton = ({
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 20 }}>{`${title}`}</Text>
+        <Text style={{ fontSize: 18 }}>{`${title}`}</Text>
         { (min && max) ?
-          <Text style={{ fontSize: 16 }}>{`(Min ${min}, Max ${max})`}</Text>
+          <Text style={{ fontSize: 12 }}>{`(Min ${min}, Max ${max})`}</Text>
           :
           null
         }
@@ -77,7 +79,13 @@ const RandomButton = ({
           { (min && max) ?
             <Text style={{ fontSize: 20, color: '#FFFFFF' }}>{`${randomTitle}`}</Text>
             :
-            <Text style={{ fontSize: 12, color: '#FFFFFF' }}>{`${randomTitle === 0 ? 'Single' : 'Multi'}`}</Text>
+            <Text style={{ fontSize: 12, color: '#FFFFFF' }}>
+              { onOffTitle ?
+                `${randomTitle === 0 ? 'Off' : 'On'}`
+                :
+                `${randomTitle === 0 ? 'Single' : 'Multi'}`
+              }
+            </Text>
           }
         </TouchableOpacity>
       </View>

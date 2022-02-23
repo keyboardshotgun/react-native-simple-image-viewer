@@ -16,7 +16,9 @@ const SimpleImageViewer = ({
   showTitle = false,
   selectedIndex = 0,
   perPage = 3,
+  itemMargin = 15,
   leftHanded = false,
+  showPage = false,
 }: SimpleImageViewerProps) => {
 
   const [complementaryBgColor,] = useState<string>(getComplementaryColor(bgColor!))
@@ -46,6 +48,8 @@ const SimpleImageViewer = ({
         showTitle={showTitle}
         bgColor={bgColor}
         complementaryBgColor={complementaryBgColor}
+        showPage={showPage}
+        itemMargin={itemMargin}
       />
       <CloseButton
         handed={leftHanded}

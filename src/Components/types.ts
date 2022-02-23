@@ -22,6 +22,7 @@ export type SimpleImageViewerProps = {
   itemMargin?: number;
   naviPosition?: 'top' | 'bottom';
   leftHanded?: boolean;
+  showPage?: boolean;
 };
 
 export type ViewGestureHandlerRootHOCProps = {
