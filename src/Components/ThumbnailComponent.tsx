@@ -53,7 +53,7 @@ const ThumbnailComponent = ({
       ]}
     >
       {
-        !(isError) ?
+        (isError) ?
           <ErrorComponent size={'small'} />
           :
           <FastImage

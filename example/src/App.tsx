@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SimpleImageViewer } from 'react-native-simple-image-viewer';
 import { useCallback, useEffect, useState } from 'react';
 import RandomButton from './RandomButton';
@@ -18,6 +18,7 @@ export default function App() {
   const [defaultImages, setDefaultImages] = useState<
     { uri: string; title: string }[]
   >([]);
+  const [viewMode, setViewMode] = useState<'single' | 'multi'>('single');
 
   useEffect(() => {
     const newArray = arrayMaker(totItems);
@@ -33,6 +34,10 @@ export default function App() {
     });
   },[]);
 
+  const updateViewMode = (value: number) =>{
+      setViewMode(value === 0 ? 'single' : 'multi');
+  }
+
   const updateTotItem = (value: number) => {
     setTotItems(value);
   };
@@ -42,35 +47,61 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <RandomButton
-        title={'Total count of items'}
-        min={MIN_NUMBER}
-        max={100}
-        onResult={updateTotItem}
-      />
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
 
-      <RandomButton
-        title={'Items per page'}
-        min={3}
-        max={MIN_NUMBER}
-        onResult={updateItemPerPage}
-      />
-      <TouchableOpacity
-        style={styles.simpleButton}
-        onPress={() => setShowHide(true)}
-      >
-        <Text style={styles.simpleButtonText}>{'Show me the Modal'}</Text>
-      </TouchableOpacity>
-      <SimpleImageViewer
-        perPage={itemsPerPage}
-        imageUri={defaultImage}
-        images={defaultImages}
-        isVisible={showHide}
-        onClose={() => setShowHide(false)}
-        bgColor={'#333333'}
-      />
-    </View>
+        <View style={{height : 160, backgroundColor : "#EEEEEE", width: '100%', marginBottom : 50, borderRadius : 10, justifyContent : 'center', alignItems : 'center'}}>
+          <Text style={{fontSize : 20, lineHeight : 60, color : "#333333" }}>{`react-native-simple-image-viewer`}</Text>
+          <View style={{padding : 15, backgroundColor : "#FFFFFF", width: '90%', borderRadius : 10}}>
+            <Text style={{fontSize : 14, lineHeight : 20, color : "#555555"}}>{`- Pan, Pinch, Rotate gestures`}</Text>
+            <Text style={{fontSize : 14, lineHeight : 20, color : "#555555"}}>{`- Double tap to rollback`}</Text>
+          </View>
+        </View>
+
+        <RandomButton
+          title={'ViewMode'}
+          min={0}
+          max={0}
+          onResult={updateViewMode}
+        />
+
+        { viewMode === 'multi' ?
+          <>
+            <RandomButton
+              title={'Total count of items'}
+              min={MIN_NUMBER}
+              max={100}
+              onResult={updateTotItem}
+            />
+
+            <RandomButton
+              title={'Items per page'}
+              min={3}
+              max={MIN_NUMBER}
+              onResult={updateItemPerPage}
+            />
+          </>
+          :
+          null
+        }
+
+        <TouchableOpacity
+          style={styles.simpleButton}
+          onPress={() => setShowHide(true)}>
+          <Text style={styles.simpleButtonText}>{'Open Modal'}</Text>
+        </TouchableOpacity>
+
+        <SimpleImageViewer
+          viewMode={viewMode}
+          perPage={itemsPerPage}
+          imageUri={defaultImage}
+          images={defaultImages}
+          isVisible={showHide}
+          onClose={() => setShowHide(false)}
+          bgColor={'#333333'}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -78,13 +109,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
+    justifyContent: 'flex-start',
+    padding: 15,
   },
   simpleButton: {
     backgroundColor: '#18A6F6',
     width: '100%',
-    height: 80,
+    height: 50,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',

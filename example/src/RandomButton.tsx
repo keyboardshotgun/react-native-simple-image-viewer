@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type RandomButtonProps = {
@@ -16,10 +16,17 @@ const RandomButton = ({
 }: RandomButtonProps) => {
   const [randomTitle, setRandomTitle] = useState<number>(min);
 
+  useEffect(()=>{
+    onResult(randomTitle);
+  },[randomTitle])
+
   const randomNumberMaker = () => {
-    const randomNumber = Math.round(Math.random() * (max - min)) + min;
-    setRandomTitle(randomNumber);
-    onResult(randomNumber);
+    if(min && max){
+      const randomNumber = Math.round(Math.random() * (max - min)) + min;
+      setRandomTitle(randomNumber);
+    }else{
+      setRandomTitle(prevState => (prevState === 0) ? 1 : 0);
+    }
   };
 
   return (
@@ -28,7 +35,8 @@ const RandomButton = ({
         width: '100%',
         height: 80,
         flexDirection: 'row',
-        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderTopWidth : StyleSheet.hairlineWidth,
+        borderColor : "#999999",
         marginBottom: 10,
       }}
     >
@@ -41,7 +49,11 @@ const RandomButton = ({
         }}
       >
         <Text style={{ fontSize: 20 }}>{`${title}`}</Text>
-        <Text style={{ fontSize: 16 }}>{`(Min ${min}, Max ${max})`}</Text>
+        { (min && max) ?
+          <Text style={{ fontSize: 16 }}>{`(Min ${min}, Max ${max})`}</Text>
+          :
+          null
+        }
       </View>
       <View
         style={{
@@ -61,11 +73,12 @@ const RandomButton = ({
             height: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-          }}
-        >
-          <Text
-            style={{ fontSize: 20, color: '#FFFFFF' }}
-          >{`${randomTitle}`}</Text>
+          }}>
+          { (min && max) ?
+            <Text style={{ fontSize: 20, color: '#FFFFFF' }}>{`${randomTitle}`}</Text>
+            :
+            <Text style={{ fontSize: 12, color: '#FFFFFF' }}>{`${randomTitle === 0 ? 'Single' : 'Multi'}`}</Text>
+          }
         </TouchableOpacity>
       </View>
     </View>

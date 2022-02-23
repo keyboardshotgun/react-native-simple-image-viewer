@@ -23,7 +23,7 @@ const ViewGestureHandlerRootHOC = gestureHandlerRootHOC(
     return imageUri ? (
       <Animated.View style={{ flex: 1, backgroundColor: bgColor as string }}>
         {
-          (!isError) ?
+          (isError) ?
             <ErrorComponent transXYStyle={transXYStyle} size={'big'} />
             :
             <Animated.Image
