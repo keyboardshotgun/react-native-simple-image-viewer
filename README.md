@@ -12,6 +12,7 @@
 ![react-native-reanimated](https://img.shields.io/badge/react--native--reanimated--v2-v2.4.1-blue)
 ![react-native-gesture-handler](https://img.shields.io/badge/react--native--gesture--handle-v2.1-blue)
 ![react-native-modal](https://img.shields.io/badge/react--native--modal-v13.0-blue)
+![react-native-fast-image](https://img.shields.io/badge/react--native--fast--image-v8.5.11-blue)
 
 single image
 
