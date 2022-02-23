@@ -25,7 +25,6 @@ const ThumbnailComponent = ({
   };
 
   const imageLoadedHandler = (e:  OnLoadEvent) => {
-    console.log('Loading Loaded' + e.nativeEvent.width, e.nativeEvent.height)
     if(isError && ( e?.nativeEvent?.width >= 0  || e?.nativeEvent?.height >= 0 ) )
     {
       setIsError(false);
