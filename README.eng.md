@@ -110,7 +110,7 @@ module.exports = {
   c:\your-project-name\npm react-native run-ios
 ```
 
-### Optional
+### Optional (Android)
 - Some images are displayed only on iOS ?
 - an error such as out of memory or pool hard cap violation
 ```java
@@ -121,6 +121,27 @@ AndroidManifest.xml
       ...
       android:largeHeap="true" <-- add
       ...>
+```
+
+- Release build with proguard
+```sh
+proguard-rules.pro
+# Add project specific ProGuard rules here.
+...
+
+# react-native-reanimated
+-keep class com.swmansion.reanimated.** { *; }
+-keep class com.facebook.react.turbomodule.** { *; }
+
+# react-native-fast-image
+-keep public class com.dylanvann.fastimage.* {*;}
+-keep public class com.dylanvann.fastimage.** {*;}
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
 ```
 
 ## Usage
