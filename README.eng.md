@@ -109,6 +109,18 @@ module.exports = {
   c:\your-project-name\npm react-native run-ios
 ```
 
+### Optional
+- Some images are displayed only on iOS ?
+- an error such as out of memory or pool hard cap violation
+```java
+AndroidManifest.xml
+
+<application
+      android:name=".MainApplication"
+      ...
+      android:largeHeap="true" <-- add
+      ...>
+```
 
 ## Usage
 ### single image
@@ -158,8 +170,17 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | showTitle       | boolean                                     |    X     |                  false                  |  Show/Hide Selected imageUri object's title  |
 | itemMargin      | number                                      |    X     |                   15                    |         margin between items of list         |
 | showPage        | boolean                                     |    X     |                  false                  | Show/Hide page current and total page number |
+| token           | string                                      |    X     |                    -                    |            string token like jwt             |
+| tokenHeader     | string                                      |    X     |                'Bearer'                 |     string token header like jwt header      |
+| requestMethod   | string                                      |    X     |                  'GET'                  |                                              |
 
 ## Changelog
+### 0.4
++ Added properties for secured-image like needed jwt. request header is automatically generated if token property existed.
+
+### 0.3.2
++ fixed minor errors
+
 ### 0.3.1
 + Added current / total page info
 + new property (showPage,itemMargin,leftHanded)

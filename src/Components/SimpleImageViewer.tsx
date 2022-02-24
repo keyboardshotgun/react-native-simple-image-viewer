@@ -19,6 +19,9 @@ const SimpleImageViewer = ({
   itemMargin = 15,
   leftHanded = false,
   showPage = false,
+  token,
+  tokenHeader = 'Bearer',
+  requestMethod = 'GET'
 }: SimpleImageViewerProps) => {
 
   const [complementaryBgColor,] = useState<string>(getComplementaryColor(bgColor!))
@@ -38,24 +41,28 @@ const SimpleImageViewer = ({
       isVisible={thisVisible}
       animationIn={'fadeIn'}
       animationOut={'fadeOut'}
+      statusBarTranslucent={true}
       style={[styles.modal, { backgroundColor : bgColor! }]}>
-      <SimpleImageView
-        viewMode={viewMode}
-        perPage={perPage}
-        selectedIndex={selectedIndex}
-        imageUri={imageUri}
-        images={images}
-        showTitle={showTitle}
-        bgColor={bgColor}
-        complementaryBgColor={complementaryBgColor}
-        showPage={showPage}
-        itemMargin={itemMargin}
-      />
-      <CloseButton
-        handed={leftHanded}
-        onClose={closeModal}
-        closeButtonColor={complementaryBgColor}
-      />
+        <SimpleImageView
+          viewMode={viewMode}
+          perPage={perPage}
+          selectedIndex={selectedIndex}
+          imageUri={imageUri}
+          images={images}
+          showTitle={showTitle}
+          bgColor={bgColor}
+          complementaryBgColor={complementaryBgColor}
+          showPage={showPage}
+          itemMargin={itemMargin}
+          token={token}
+          tokenHeader={tokenHeader}
+          requestMethod={requestMethod}
+        />
+        <CloseButton
+          handed={leftHanded}
+          onClose={closeModal}
+          closeButtonColor={complementaryBgColor}
+        />
     </Modal>
   );
 };

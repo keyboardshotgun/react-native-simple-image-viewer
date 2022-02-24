@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {  TouchableOpacity  } from 'react-native';
 import { styles } from './styles';
-import type { ThumbnailComponentProps } from './types';
+import type { ImageElementType, ThumbnailComponentProps } from './types';
 import FastImage, { OnLoadEvent } from 'react-native-fast-image';
 import ErrorComponent from './ErrorComponent';
 
@@ -14,9 +14,33 @@ const ThumbnailComponent = ({
   nowPage,
   perPage,
   borderColor,
+  token,
+  tokenHeader,
+  requestMethod
 }: ThumbnailComponentProps) => {
 
   const [isError, setIsError] = useState<boolean>(false);
+  const [thisImage, setThisImage] = useState<ImageElementType | undefined>(undefined);
+
+  useEffect(()=>{
+    if(imgObj?.uri)
+    {
+      if(token)
+      {
+        setThisImage(
+          {
+            uri : imgObj.uri,
+            headers : {
+              Authorization : `${tokenHeader} ${token}`
+            },
+            method : requestMethod
+          }
+        )
+      }else{
+        setThisImage(imgObj);
+      }
+    }
+  },[imgObj])
 
   const updateIndex = () => {
     if (updateNowImageIndex) {
@@ -57,7 +81,7 @@ const ThumbnailComponent = ({
           :
           <FastImage
             fallback={true}
-            source={imgObj}
+            source={thisImage as ImageElementType}
             removeClippedSubviews={true}
             onLoad={imageLoadedHandler}
             onError={imageErrorHandler}

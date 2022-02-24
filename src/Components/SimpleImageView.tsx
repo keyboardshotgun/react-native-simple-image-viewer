@@ -34,6 +34,9 @@ const SimpleImageView = ({
   showTitle,
   complementaryBgColor,
   showPage,
+  token,
+  tokenHeader,
+  requestMethod
 }: SimpleImageViewProps) => {
   const DeviceWidth = Dimensions.get('window').width;
   const imageSize =
@@ -79,7 +82,7 @@ const SimpleImageView = ({
   }, [totPage]);
 
   useEffect(() => {
-    if (!imgArray) return;
+    if ( (viewMode !== 'multi') || !imgArray) return;
     setNowImage(tmpImgObj);
     setNowImage(images![imgIndex]);
   }, [imgIndex]);
@@ -135,7 +138,9 @@ const SimpleImageView = ({
 
   const tapHandler: ComposedGesture | GestureType | undefined = Gesture.Tap()
     .numberOfTaps(2)
-    .maxDelay(300)
+    .minPointers(1)
+    .maxDelay(250)
+    .maxDistance(70)
     .onEnd(scaleAnimation);
 
   const rotateHandler: ComposedGesture | GestureType | undefined =
@@ -194,6 +199,9 @@ const SimpleImageView = ({
               perPage={perPage!}
               borderColor={complementaryBgColor!}
               updateNowImageIndex={updateNowImageIndex}
+              token={token}
+              tokenHeader={tokenHeader}
+              requestMethod={requestMethod}
             />
           );
         })}
@@ -222,6 +230,9 @@ const SimpleImageView = ({
               imageUri={nowImage}
               transXYStyle={transXYStyle}
               bgColor={bgColor as string}
+              token={token}
+              tokenHeader={tokenHeader}
+              requestMethod={requestMethod}
             />
           </GestureDetector>
         </View>
@@ -240,11 +251,9 @@ const SimpleImageView = ({
             ListEmptyComponent={
               <ActivityIndicator size={'large'} color={complementaryBgColor!} />
             }
-            style={{ flex: 0.85 }}
+            style={{ flex: (viewMode === 'multi' && showPage) ? 0.85  : 1}}
             windowSize={1}
-            initialNumToRender={
-              totPage ? (totPage >= 2 ? 2 : totPage) : undefined
-            }
+            initialNumToRender={ totPage ? (totPage) : undefined }
             keyExtractor={keyExtractor}
             data={imgArray}
             renderItem={_renderItem}
@@ -261,11 +270,11 @@ const SimpleImageView = ({
       ) : null}
 
       { (viewMode === 'multi' && showPage) ?
-        <View style={{flex: 0.5, justifyContent : 'flex-start', alignItems : 'center' }}>
+        <View style={{flex: 0.5, justifyContent : 'flex-start', alignItems : 'center', backgroundColor : bgColor! }}>
           <Text style={{color : complementaryBgColor!, fontSize : 15, fontWeight : '500' }}>{`${nowPage} / ${totPage}`}</Text>
         </View>
         :
-        null
+        <View style={{flex: 0, backgroundColor : bgColor!}} />
       }
     </View>
   ) : null;

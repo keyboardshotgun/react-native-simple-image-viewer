@@ -8,7 +8,7 @@ const setBg = (index: number) => {
   return Math.floor(Math.random() * 16777200 + index).toString(16);
 };
 
-const defaultImage = { uri: 'https://via.placeholder.com/2048/18A6F6' };
+const defaultImage = { uri: 'https://via.placeholder.com/2048/18A6F6' ,  title : 'Default Image Title' };
 
 export default function App() {
   const MIN_NUMBER = 10;
@@ -20,6 +20,7 @@ export default function App() {
   >([]);
   const [viewMode, setViewMode] = useState<'single' | 'multi'>('single');
   const [showPage, setShowPage] = useState<boolean>(false);
+  const [showTitle, setShowTitle] = useState<boolean>(false);
 
   useEffect(() => {
     const newArray = arrayMaker(totItems);
@@ -51,6 +52,10 @@ export default function App() {
     setShowPage(value === 1);
   }
 
+  const updateShowTitle =(value: number) => {
+    setShowTitle(value === 1);
+  }
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -68,6 +73,14 @@ export default function App() {
           min={0}
           max={0}
           onResult={updateViewMode}
+        />
+
+        <RandomButton
+          title={'Image Title'}
+          min={0}
+          max={0}
+          onOffTitle={true}
+          onResult={updateShowTitle}
         />
 
         { viewMode === 'multi' ?
@@ -114,6 +127,7 @@ export default function App() {
           onClose={() => setShowHide(false)}
           bgColor={'#333333'}
           showPage={showPage}
+          showTitle={showTitle}
         />
       </View>
     </SafeAreaView>

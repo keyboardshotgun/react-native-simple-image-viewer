@@ -6,6 +6,8 @@ export type SimpleImageViewProps = Omit<SimpleImageViewerProps, 'isVisible'>;
 export type ImageElementType = {
   uri: string;
   title?: string;
+  method?: undefined | 'POST' | 'GET',
+  headers?: undefined | { Authorization?: string ,  auth? : string  },
 };
 
 export type SimpleImageViewerProps = {
@@ -23,12 +25,18 @@ export type SimpleImageViewerProps = {
   naviPosition?: 'top' | 'bottom';
   leftHanded?: boolean;
   showPage?: boolean;
+  token?: undefined | string;
+  tokenHeader?: undefined | string;
+  requestMethod? : 'POST' | 'GET';
 };
 
 export type ViewGestureHandlerRootHOCProps = {
   transXYStyle: AnimatedStyleProp<ImageStyle>;
   imageUri: SimpleImageViewerProps['imageUri'];
   bgColor?: SimpleImageViewerProps['bgColor'];
+  token : SimpleImageViewerProps['token'];
+  tokenHeader : SimpleImageViewerProps['tokenHeader'];
+  requestMethod : SimpleImageViewerProps['requestMethod'];
 };
 
 export type ThumbnailComponentProps = {
@@ -40,4 +48,7 @@ export type ThumbnailComponentProps = {
   imgObj: ImageElementType;
   perPage: number;
   borderColor: string;
+  token : SimpleImageViewerProps['token'];
+  tokenHeader : SimpleImageViewerProps['tokenHeader'];
+  requestMethod : SimpleImageViewerProps['requestMethod'];
 };
