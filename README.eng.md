@@ -37,6 +37,25 @@ Multiple images
 yarn add react-native-modal react-native-reanimated react-native-gesture-handler react-native-simple-image-viewer
 ```
 
+### Run/Test Example
+- React-native Development Environment? if not [Read this and Setting first. (it'll be hard time. sorry.)](https://reactnative.dev/docs/environment-setup)
+
+- Download Code Zip and extract or git code.
+```shell
+   * command-line
+    x:\yourfolderName\react-native-simple-image-viewer> cd example
+    x:\yourfolderName\react-native-simple-image-viewer\example> npm or yarn install
+    \example> cd ios && pod install
+
+   * run android
+    \example> npx(npm) react-native run-android
+
+   * run ios
+    \example> npx(npm) react-native run-ios
+```
+
+## Settings for Project
+
 ### Android
 | [Setting for react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
 1. your-project-name/babel.config.js
