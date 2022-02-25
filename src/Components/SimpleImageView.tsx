@@ -224,7 +224,7 @@ const SimpleImageView = ({
       </View>
 
       {nowImage && nowImage?.uri ? (
-        <View style={{ flex: 4 }}>
+        <View style={{ flex: 5 }}>
           <GestureDetector gesture={simultaneousHandler}>
             <ViewGestureHandlerRootHOC
               imageUri={nowImage}
@@ -239,7 +239,7 @@ const SimpleImageView = ({
       ) : (
         <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator
-            size={'small'}
+            size={'large'}
             color={complementaryBgColor! ?? '#FFFFFF'}
           />
         </View>
@@ -248,10 +248,8 @@ const SimpleImageView = ({
       {viewMode === 'multi' && (totPage && totPage > 0) && ( imgArray && imgArray?.length > 0) ?
         (
           <FlatList
-            ListEmptyComponent={
-              <ActivityIndicator size={'large'} color={complementaryBgColor!} />
-            }
-            style={{ flex: (viewMode === 'multi' && showPage) ? 0.85  : 1}}
+            ListEmptyComponent={<ActivityIndicator size={'large'} color={complementaryBgColor!} />}
+            style={{ flex: 1 }}
             windowSize={1}
             initialNumToRender={ totPage ? (totPage) : undefined }
             keyExtractor={keyExtractor}
@@ -262,20 +260,21 @@ const SimpleImageView = ({
             removeClippedSubviews={true}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            onMomentumScrollBegin={undefined}
             onMomentumScrollEnd={updateNowPage}
-            onEndReached={undefined}
             onEndReachedThreshold={0.5}
+            onMomentumScrollBegin={undefined}
+            onEndReached={undefined}
           />
       ) : null}
 
       { (viewMode === 'multi' && showPage) ?
-        <View style={{flex: 0.5, justifyContent : 'flex-start', alignItems : 'center', backgroundColor : bgColor! }}>
+        <View style={{flex: 0.65, justifyContent : 'flex-start', alignItems : 'center', backgroundColor : bgColor! }}>
           <Text style={{color : complementaryBgColor!, fontSize : 15, fontWeight : '500' }}>{`${nowPage} / ${totPage}`}</Text>
         </View>
         :
-        <View style={{flex: 0.5, backgroundColor : bgColor!}} />
+        <View style={{flex: 0.65, backgroundColor : bgColor!, zIndex : -1 }}/>
       }
+
     </View>
   ) : null;
 };

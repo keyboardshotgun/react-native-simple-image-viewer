@@ -1,7 +1,7 @@
 import type { AnimatedStyleProp } from 'react-native-reanimated';
 import type { ImageStyle } from 'react-native';
 
-export type SimpleImageViewProps = Omit<SimpleImageViewerProps, 'isVisible'>;
+export type SimpleImageViewProps = Omit<SimpleImageViewerProps, 'isVisible'|'onClose'|'naviPosition'>;
 
 export type ImageElementType = {
   uri: string;
@@ -13,12 +13,12 @@ export type ImageElementType = {
 export type SimpleImageViewerProps = {
   isVisible: boolean;
   imageUri: ImageElementType;
+  onClose: (state: boolean) => void;
   selectedIndex?: number;
   images?: ImageElementType[] | [];
   showTitle?: boolean;
   bgColor?: string | undefined | null;
   complementaryBgColor?: string | undefined | null;
-  onClose?: (state: boolean) => void;
   viewMode?: 'single' | 'multi';
   perPage?: number;
   itemMargin?: number;
