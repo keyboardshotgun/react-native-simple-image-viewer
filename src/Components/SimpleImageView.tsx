@@ -274,7 +274,7 @@ const SimpleImageView = ({
           <Text style={{color : complementaryBgColor!, fontSize : 15, fontWeight : '500' }}>{`${nowPage} / ${totPage}`}</Text>
         </View>
         :
-        <View style={{flex: 0, backgroundColor : bgColor!}} />
+        <View style={{flex: 0.5, backgroundColor : bgColor!}} />
       }
     </View>
   ) : null;

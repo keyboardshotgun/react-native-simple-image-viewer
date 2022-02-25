@@ -12,7 +12,7 @@ const SimpleImageViewer = ({
   images = [],
   onClose,
   bgColor = '#333333',
-  viewMode = 'multi',
+  viewMode = 'single',
   showTitle = false,
   selectedIndex = 0,
   perPage = 3,
