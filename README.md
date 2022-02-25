@@ -56,7 +56,7 @@ yarn add react-native-modal react-native-reanimated react-native-gesture-handler
     \example> npx(npm) react-native run-ios
 ```
 
-## Settings for Project
+## Project Settings
 
 ### Android
 | [Setting for react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
