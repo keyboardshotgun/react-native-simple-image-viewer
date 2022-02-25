@@ -159,6 +159,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
         <SimpleImageViewer
           imageUri={{ uri: 'https://via.placeholder.com/2048/18A6F6' }}
           isVisible={isVisible}
+          onClose={() => setIsVisible(false)}
         />
     </View>
   );
@@ -197,7 +198,10 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | requestMethod   | string                                      |    X     |                  'GET'                  |                                              |
 
 ## Changelog
-### 0.4
+### 0.4.2
++ fixed minor errors
+
+### 0.4.0
 + Added properties for secured-image like needed jwt. request header is automatically generated if token property existed.
 
 ### 0.3.2

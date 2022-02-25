@@ -161,6 +161,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
         <SimpleImageViewer
           imageUri={{ uri: 'https://via.placeholder.com/2048/18A6F6' }}
           isVisible={isVisible}
+          onClose={() => setIsVisible(false)}
         />
     </View>
   );
@@ -185,7 +186,7 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | imageUri      | Object : { uri : string , title? : string } |    O     | https://via.placeholder.com/2048/18A6F6 |          jsonPlaceHolder image url           |
 | images?       | Array                                       |    X     |                   [ ]                   |              Array of imageUri               |
 | bgColor?      | String                                      |    X     |                 #333333                 |                                              |
-| onClose?      | Function : (state:boolean) => void          |    X     |                  false                  |          return false when turn off          |
+| onClose?      | Function : (state:boolean) => void          |    O     |                  false                  |          return false when turn off          |
 | viewMode      | 'single','multi'                            |    X     |                'single'                 |                                              |
 | perPage       | number                                      |    X     |                    3                    |                                              |
 | naviPosition  | 'top', 'bottom'                             |    X     |                    -                    |             working in progress              |
@@ -199,8 +200,11 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 | requestMethod | string                                      |    X     |                  'GET'                  |                                              |
 
 ## Changelog
-### 0
-+ Added properties for secured-image like needed jwt. request header is automatically generated if token property existed.
+### 0.4.2
++ fixed minor errors
+
+### 0.4.0
++ Added properties for secured-image. request header is automatically generated if token property existed.
 
 ### 0.3.2
 + fixed minor errors
