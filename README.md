@@ -220,22 +220,22 @@ import { SimpleImageViewer } from "react-native-simple-image-viewer";
 
 ## Changelog
 ### 0.4.2
-+ fixed minor errors
++ fix minor errors
 
 ### 0.4.0
 + Added properties for secured-image. request header is automatically generated if token property existed.
 
 ### 0.3.2
-+ fixed minor errors
++ fix minor errors
 
 ### 0.3.1
 + Added current / total page info
 + new property (showPage,itemMargin,leftHanded)
-+ fixed almost minor errors
++ fix almost minor errors
 + Added new option component for example
 
 ### 0.2.3
-+ fixed ErrorComponent
++ fix ErrorComponent
 
 ### 0.2.1
 + Added react-native-fast-image dependency for list performance.
